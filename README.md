@@ -64,7 +64,7 @@ _Help command:_ `kubectl virt help`
 
 `kubectl edit -n kubevirt kubevirt kubevirt`
 
-Add the following (experiment with diffrent values for optimal migration time)
+Add the following (experiment with diffrent values for optimal migration time):
 
 ```
     apiVersion: kubevirt.io/v1
