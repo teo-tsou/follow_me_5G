@@ -41,11 +41,11 @@ On the Master Node:
 
 - **Deploy the KubeVirt operator** (version 0.54)
 
-`kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.44.0/kubevirt-operator.yaml`
+`kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.54.0/kubevirt-operator.yaml`
 
 - **Create the KubeVirt CR** (version 0.54)
 
-`kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.44.0/kubevirt-cr.yaml`
+`kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.54.0/kubevirt-cr.yaml`
 
 - **Wait until all KubeVirt pods come up**
 
@@ -56,13 +56,13 @@ On the Master Node:
 `kubectl krew install virt`
 _Help command:_ `kubectl virt help`
 
-- **Deploy the CDI operator** (version 1.40.0)
+- **Deploy the CDI operator** (version 1.51.0)
 
-`kubectl apply -f https://github.com/kubevirt/containerized-data-importer/releases/download/v1.40.0/cdi-operator.yaml`
+`kubectl apply -f https://github.com/kubevirt/containerized-data-importer/releases/download/v1.51.0/cdi-operator.yaml`
 
-- **Deploy the CDI CDR** (version 1.40.0)
+- **Deploy the CDI CDR** (version 1.51.0)
 
-`kubectl create -f https://github.com/kubevirt/containerized-data-importer/releases/download/v1.40.0/cdi-cr.yaml`
+`kubectl create -f https://github.com/kubevirt/containerized-data-importer/releases/download/v1.51.0/cdi-cr.yaml`
 
 - **Deploy the VNC Viewer** (Optional)
 
