@@ -35,10 +35,6 @@ On the Master Node:
 
 `kubectl create namespace kubevirt`
 
-- **Enable Live Migration**
-
-`kubectl create configmap -n kubevirt kubevirt-config --from-literal feature-gates="LiveMigration"`
-
 - **Deploy the KubeVirt operator** (version 0.54)
 
 `kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.54.0/kubevirt-operator.yaml`
@@ -63,6 +59,32 @@ _Help command:_ `kubectl virt help`
 - **Deploy the CDI CDR** (version 1.51.0)
 
 `kubectl create -f https://github.com/kubevirt/containerized-data-importer/releases/download/v1.51.0/cdi-cr.yaml`
+
+- **Enable Live Migration**
+
+`kubectl edit -n kubevirt kubevirt kubevirt`
+
+Add the following (experiment with diffrent values for optimal migration time)
+
+```
+    apiVersion: kubevirt.io/v1
+    kind: Kubevirt
+    metadata:
+      name: kubevirt
+      namespace: kubevirt
+    spec:
+      configuration:
+        developerConfiguration:
+          featureGates:
+          - LiveMigration
+        migrations:
+          parallelMigrationsPerCluster: 5
+          parallelOutboundMigrationsPerNode: 2
+          bandwidthPerMigration: 64Mi
+          completionTimeoutPerGiB: 800
+          progressTimeout: 150
+          disableTLS: false
+```
 
 - **Deploy the VNC Viewer** (Optional)
 
