@@ -39,13 +39,13 @@ On the Master Node:
 
 `kubectl create configmap -n kubevirt kubevirt-config --from-literal feature-gates="LiveMigration"`
 
-- **Deploy the KubeVirt operator** (version 0.54)
+- **Deploy the KubeVirt operator** (version 0.50)
 
-`kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.54.0/kubevirt-operator.yaml`
+`kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.50.0/kubevirt-operator.yaml`
 
-- **Create the KubeVirt CR** (version 0.54)
+- **Create the KubeVirt CR** (version 0.50)
 
-`kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.54.0/kubevirt-cr.yaml`
+`kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.50.0/kubevirt-cr.yaml`
 
 - **Wait until all KubeVirt pods come up**
 
