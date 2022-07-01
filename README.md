@@ -41,11 +41,11 @@ On the Master Node:
 
 - **Deploy the KubeVirt operator** (version 0.54)
 
-`kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.54.0/kubevirt-operator.yaml`
+`kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.44.0/kubevirt-operator.yaml`
 
 - **Create the KubeVirt CR** (version 0.54)
 
-`kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.54.0/kubevirt-cr.yaml`
+`kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.44.0/kubevirt-cr.yaml`
 
 - **Wait until all KubeVirt pods come up**
 
