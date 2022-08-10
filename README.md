@@ -49,6 +49,9 @@ On the Master Node:
 
 - **Install virtctl with krew**
 
+Install krew first:
+https://krew.sigs.k8s.io/docs/user-guide/setup/install/
+
 `kubectl krew install virt`
 _Help command:_ `kubectl virt help`
 
