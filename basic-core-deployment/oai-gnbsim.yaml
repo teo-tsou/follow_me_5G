@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oai-gnb
+spec:
+  selector:
+    matchLabels:
+      app: oai-gnb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: oai-gnb
+      annotations:
+        k8s.v1.cni.cncf.io/networks: oai-gnb-net
+      labels:
+        app: oai-gnb
+    spec:    
+      containers:           
+      - image: oaisoftwarealliance/oai-gnb:develop
+        livenessProbe:
+          exec:
+            command:
+              - /bin/bash -c "pgrep nr-softmodem"
+          failureThreshold: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
+        imagePullPolicy: IfNotPresent
+        securityContext:
+            privileged: true
+        name: oai-gnb
+        env:
+          # Use secret in real usage
+
+        - name: MNC
+          value: "95"
+
+        - name: MCC
+          value: "208"
+
+        - name: RFSIMULATOR
+          value: "server"
+
+        - name: GNB_NAME
+          value: "gnb-rfsim"
+
+        - name: USE_SA_TDD_MONO
+          value: "yes"
+
+        - name: MNC_LENGTH
+          value: "2"
+
+        - name: TAC
+          value: "40960"
+
+        - name: NSSAI_SST
+          value: "1"
+
+        - name: NSSAI_SD1
+          value: "1"
+
+        - name: NSSAI_SD0
+          value: "27db"          
+
+        - name: DNN
+          value: "default"
+
+        - name: AMF_IP_ADDRESS
+          value: "192.168.70.132"
+
+        - name: GNB_NGA_IP_ADDRESS
+          value: "192.168.70.150"
+
+        - name: GNB_NGU_IP_ADDRESS
+          value: "192.168.70.150"
+
+        - name: GNB_NGU_IF_NAME
+          value: "net1"
+
+        - name: GNB_NGA_IF_NAME
+          value: "net1"  
+        
+        - name: USE_ADDITIONAL_OPTIONS
+          value: "--sa -E --rfsim --log_config.global_log_options level,nocolor,time"              
+
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: oai-gnb-net
+spec:
+  config: '{ "cniVersion": "0.3.0", "type": "macvlan", "master": "br0", "ipam": { "type": "static", "addresses": [ { "address": "192.168.70.150/24",
+    "gateway": "192.168.70.1" } ] } }'
+    
+

@@ -1,0 +1,15 @@
+kubectl create -f mysql.yaml;
+sleep 3;
+kubectl create -f oai-nrf.yaml;
+sleep 3;
+kubectl create -f oai-udr.yaml;
+sleep 3;
+kubectl create -f oai-udm.yaml;
+sleep 3;
+kubectl create -f oai-ausf.yaml;
+sleep 3;
+kubectl create -f oai-amf.yaml;
+sleep 3;
+kubectl create -f oai-smf.yaml;
+sleep 3;
+kubectl create -f oai-spgwu.yaml;
