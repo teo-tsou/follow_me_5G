@@ -1,0 +1,112 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ueransim
+spec:
+  selector:
+    matchLabels:
+      app: ueransim
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: ueransim
+      annotations:
+        k8s.v1.cni.cncf.io/networks: ueransim-net
+      labels:
+        app: ueransim
+    spec:    
+      containers:           
+      - image: rohankharade/ueransim:latest
+        livenessProbe:
+          exec:
+            command:
+              - /bin/bash -c "ifconfig uesimtun0"
+          failureThreshold: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
+        imagePullPolicy: IfNotPresent
+        securityContext:
+            privileged: true
+        name: ueransim
+        env:
+          # Use secret in real usage
+        - name: AMF_VALUE
+          value: "8000"
+        - name: APN
+          value: default
+        - name: GNB_IP_ADDRESS
+          value: "192.168.70.152"
+        - name: GTP_IP
+          value: "192.168.70.152"
+        - name: IGNORE_STREAM_IDS
+          value: "true"
+        - name: IMEI
+          value: "356938035643803"
+        - name: IMEI_SV
+          value: "0035609204079514"
+        - name: IMSI
+          value: "208950000000031"
+        - name: KEY
+          value: 0C0A34601D4F07677303652C0462535B
+        - name: LINK_IP
+          value: "192.168.70.152"
+        - name: MCC
+          value: "208"
+        - name: MNC
+          value: "95"
+        - name: NCI
+          value: "0x000000010"
+        - name: NGAP_IP
+          value: "192.168.70.152"
+        - name: NGAP_PEER_IP
+          value: "192.168.70.138"
+        - name: NUMBER_OF_UE
+          value: "1"
+        - name: OP
+          value: 63bfa50ee6523365ff14c1f45f88737d
+        - name: OP_TYPE
+          value: OPC
+        - name: PDU_TYPE
+          value: IPv4
+        - name: SD
+          value: "128"
+        - name: SD_0
+          value: "128"
+        - name: SD_1
+          value: "0"
+        - name: SD_2
+          value: "131"
+        - name: SD_C
+          value: "128"
+        - name: SD_D
+          value: "128"
+        - name: SD_R
+          value: "128"
+        - name: SST
+          value: "128"
+        - name: SST_0
+          value: "128"
+        - name: SST_1
+          value: "1"
+        - name: SST_2
+          value: "131"
+        - name: SST_C
+          value: "128"
+        - name: SST_D
+          value: "128"
+        - name: SST_R
+          value: "128"
+        - name: TAC
+          value: "0xa000"
+
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: ueransim-net
+spec:
+  config: '{ "cniVersion": "0.3.0", "type": "macvlan", "master": "br0", "ipam": { "type": "static", "addresses": [ { "address": "192.168.70.152/24",
+    "gateway": "192.168.70.1" } ] } }'
+    
+
