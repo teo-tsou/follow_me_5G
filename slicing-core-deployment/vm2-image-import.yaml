@@ -1,7 +1,7 @@
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: DataVolume
 metadata:
-  name: "ubuntu-data-volume"
+  name: "ubuntu-data-volume2"
 spec:
   source:
     http:

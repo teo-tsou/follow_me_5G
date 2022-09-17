@@ -2,7 +2,7 @@ version: '3.8'
 services:
     oai_spgwu_slice1:
         container_name: oai-spgwu-slice2
-        image: oai-spgwu-tiny:v1.4.0
+        image: oaisoftwarealliance/oai-spgwu-tiny:v1.4.0
         network_mode: "host"
         environment:
             - TZ=Europe/Paris

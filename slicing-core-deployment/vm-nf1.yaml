@@ -2,8 +2,8 @@ apiVersion: kubevirt.io/v1
 kind: VirtualMachineInstance
 metadata:
   labels:
-    kubevirt.io/vm: upf2
-  name: upf2
+    kubevirt.io/vm: iperf-app
+  name: iperf-app
 spec:
   domain:
     cpu:
@@ -20,7 +20,7 @@ spec:
       - masquerade: {}
         name: default
       - bridge: {}
-        name: vm-net2
+        name: vm-net1
     resources:
       requests:
         memory: 2048M
@@ -28,12 +28,12 @@ spec:
   - name: default
     pod: {}
   - multus:
-      networkName: vm-net2
-    name: vm-net2
+      networkName: vm-net1
+    name: vm-net1
   volumes:
   - dataVolume:
-      name: ubuntu-data-volume
-    name: datavolumedisk2
+      name: ubuntu-data-volume1
+    name: datavolumedisk1
   - cloudInitNoCloud:
       userData: |-
         #cloud-config
@@ -45,7 +45,7 @@ spec:
             ethernets:
               enp2s0:
                 addresses:
-                - 192.168.70.143/24
+                - 192.168.70.139/24
               enp1s0:
                 dhcp4: true
     name: cloudinitdisk
@@ -54,7 +54,7 @@ spec:
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
-  name: vm-net2
+  name: vm-net1
 spec:
   config: '{ "cniVersion": "0.3.0", "type": "bridge", "bridge": "br0" }'
 
