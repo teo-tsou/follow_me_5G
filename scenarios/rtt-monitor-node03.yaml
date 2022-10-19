@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rtt-monitor-node03
+  labels:
+    app: rtt-monitor-node03
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rtt-monitor-node03
+      run: rtt-monitor-node03
+  template:
+    metadata:
+      annotations:
+        k8s.v1.cni.cncf.io/networks: rtt-node03-net  
+      labels:
+        app: rtt-monitor-node03
+        run: rtt-monitor-node03
+    spec:
+      nodeName: station03-b205
+      containers:
+      - name: rtt-monitor-node03
+        imagePullPolicy: Always
+        image: ttsourdinis/export_rtt:node03
+        securityContext:
+          privileged: true        
+        ports:
+        - name: web
+          containerPort: 9890
+          protocol: TCP
+
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: rtt-node03-net
+spec:
+  config: '{ "cniVersion": "0.3.0", "type": "macvlan", "master": "br0", "ipam": { "type": "static", "routes": [ { "dst": "12.1.1.129/32", "gw": "192.168.70.143" } ], "addresses": [ { "address": "192.168.70.149/24",
+    "gateway": "192.168.70.1" } ] } }'
+
+
+---    
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: rtt-monitor-node03
+  name: rtt-monitor-node03
+spec:
+  type: NodePort
+  ports:
+  - name: web
+    port: 9890
+    targetPort: web
+    protocol: TCP
+    nodePort: 30009
+  selector:
+    app: rtt-monitor-node03
+
+
+---
+kind: ServiceMonitor
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: rtt-monitor-node03
+  labels:
+    app: rtt-monitor-node03
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: rtt-monitor-node03
+  endpoints:
+  - port: web
+    interval: 5s
+  namespaceSelector:
+    matchNames:
+      - default  
+

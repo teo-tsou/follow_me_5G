@@ -1,6 +1,0 @@
-apiVersion: kubevirt.io/v1alpha3
-kind: VirtualMachineInstanceMigration
-metadata:
-  name: migration2-job
-spec:
-  vmiName: upf2
