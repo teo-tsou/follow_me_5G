@@ -1,33 +1,32 @@
 # Installation Guide:
 
-**Install NFS to Cluster through scripts:**
+## Init the k8s cluster and build the PodMigration Operator
+
+By following this [repo](https://github.com/SSU-DCN/podmigration-operator)
+
+When done, Deploy Storages (NFS Provisioner) & Network Plugins (Multus CNI):
 
 On the Master Node:
 
-`root@master:~#  bash master-nfs.sh`
+`root@master:~# bash init/deploy-storages.sh`
 
-On the Worker Nodes:
 
-```
-root@base_station1:~# bash workers-nfs.sh
+## Install Prometheus & Grafana to the cluster
 
-root@base_station2:~# bash workers-nfs.sh
-```
-Let’s ensure we can read/write to the shared directory. On one worker, touch a file:
+- **Install Helm**
 
-`touch /mnt/nfs_client_files/ok.txt`
+`root@master:~# bash curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3`
+`root@master:~# chmod 700 get_helm.sh`
+`root@master:~# ./get_helm.sh`
 
-On another worker, look for the file:
+- **Add the latest helm repository - Add the Prometheus community helm chart**
 
-`ls /mnt/nfs_client_files/ | grep ok.txt`
+`root@master:~# helm repo add stable https://charts.helm.sh/stable` 
+`root@master:~# helm repo add prometheus-community https://prometheus-community.github.io/helm-charts` 
 
-If the file exists, you’re good to go.
+- **Install kube-prometheus-stack**
+`root@master:~# helm install prometheus prometheus-community/kube-prometheus-stack` 
 
-Deploy Storages (NFS Provisioner) & Network Plugins (Multus CNI):
-
-On the Master Node:
-
-`root@master:~# bash deploy-storages.sh`
 
 ## Install KubeVirt to the Cluster
 
@@ -35,11 +34,11 @@ On the Master Node:
 
 `kubectl create namespace kubevirt`
 
-- **Deploy the KubeVirt operator** (version 0.54)
+- **Deploy the KubeVirt operator** (version 0.45)
 
 `kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.54.0/kubevirt-operator.yaml`
 
-- **Create the KubeVirt CR** (version 0.54)
+- **Create the KubeVirt CR** (version 0.45)
 
 `kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.54.0/kubevirt-cr.yaml`
 
@@ -55,11 +54,11 @@ https://krew.sigs.k8s.io/docs/user-guide/setup/install/
 `kubectl krew install virt`
 _Help command:_ `kubectl virt help`
 
-- **Deploy the CDI operator** (version 1.51.0)
+- **Deploy the CDI operator** (version 1.43.0)
 
 `kubectl apply -f https://github.com/kubevirt/containerized-data-importer/releases/download/v1.51.0/cdi-operator.yaml`
 
-- **Deploy the CDI CDR** (version 1.51.0)
+- **Deploy the CDI CDR** (version 1.43.0)
 
 `kubectl create -f https://github.com/kubevirt/containerized-data-importer/releases/download/v1.51.0/cdi-cr.yaml`
 
