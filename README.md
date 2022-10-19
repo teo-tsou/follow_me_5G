@@ -11,7 +11,7 @@ On the Master Node:
 `root@master:~# bash init/deploy-storages.sh`
 
 
-## Install Prometheus & Grafana to the cluster
+## Install Prometheus/Grafana & K8s Metrics Server to the cluster
 
 - **Install Helm**
 
@@ -31,6 +31,11 @@ On the Master Node:
 - **Install kube-prometheus-stack**
 
 `root@master:~# helm install prometheus prometheus-community/kube-prometheus-stack` 
+
+
+- **Install k8s Metric Server**
+
+`root@master:~# kubectl create -f init/components.yaml` 
 
 
 ## Install KubeVirt to the Cluster
