@@ -100,4 +100,4 @@ Add the following (experiment with diffrent values for optimal migration time):
 
 - **Deploy the VNC Viewer** (Optional)
 
-`kubectl create -f virt-vnc.yaml`
+`root@master:~# kubectl create -f init/virt-vnc.yaml`
