@@ -16,13 +16,17 @@ On the Master Node:
 - **Install Helm**
 
 `root@master:~# bash curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3`
+
 `root@master:~# chmod 700 get_helm.sh`
+
 `root@master:~# ./get_helm.sh`
 
 - **Add the latest helm repository - Add the Prometheus community helm chart**
 
 `root@master:~# helm repo add stable https://charts.helm.sh/stable` 
+
 `root@master:~# helm repo add prometheus-community https://prometheus-community.github.io/helm-charts` 
+
 
 - **Install kube-prometheus-stack**
 `root@master:~# helm install prometheus prometheus-community/kube-prometheus-stack` 
