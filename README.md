@@ -29,6 +29,7 @@ On the Master Node:
 
 
 - **Install kube-prometheus-stack**
+
 `root@master:~# helm install prometheus prometheus-community/kube-prometheus-stack` 
 
 
