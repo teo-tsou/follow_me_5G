@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+    oai-cu:
+      container_name: oai-cu
+      image: ttsourdinis/oai-gnb:cu-compose
+      network_mode: "host"
+      cap_add:
+          - NET_ADMIN
+          - SYS_ADMIN
+      cap_drop:
+          - ALL
+      privileged: true
