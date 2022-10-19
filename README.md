@@ -2,7 +2,7 @@
 
 ## Init the k8s cluster and build the PodMigration Operator
 
-By following this [repo](https://github.com/SSU-DCN/podmigration-operator)
+By following the instructions of this [repo](https://github.com/SSU-DCN/podmigration-operator)
 
 When done, Deploy Storages (NFS Provisioner) & Network Plugins (Multus CNI):
 
