@@ -11,7 +11,7 @@
 # THE SOFTWARE.# 
 #
 #   
-#   Author: Theodoros Tsourdinis, Sorbonne University - UTH, email: theodoros.tsourdinis@lip6.fr                                                                                          
+#   Author: Theodoros Tsourdinis, Sorbonne University - UTH, email: theodoros.tsourdinis@sorbonne-universite.fr                                                                                          
 #   
 #   Description: A customized Edge Migration Controller, specifically designed for 5G Edge Network Architectures.       
 #                Edge services are deployed through pods for fast migrations while CNFs are deployed in KubeVirt VMs.   
@@ -27,7 +27,7 @@ from operator import itemgetter
 import csv
 import io
 
-
+#Change according to your cluster configs
 
 PROMETHEUS = 'http://10.64.94.81:32288/'
 
