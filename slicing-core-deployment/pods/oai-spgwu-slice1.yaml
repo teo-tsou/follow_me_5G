@@ -1,0 +1,219 @@
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: oai-spgwu-slice1
+# spec:
+#   ports:
+#   - port: 80
+#   selector:
+#     app: oai-spgwu-slice1
+# ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oai-spgwu-slice1
+spec:
+  selector:
+    matchLabels:
+      app: oai-spgwu-slice1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: oai-spgwu-slice1
+      annotations:
+        k8s.v1.cni.cncf.io/networks: oai-spgwu-slice1-net
+      labels:
+        app: oai-spgwu-slice1
+    spec:
+      hostAliases:
+      - ip: "192.168.70.132"
+        hostnames:
+        - "oai-nssf"
+
+      - ip: "192.168.70.133"
+        hostnames:
+        - "oai-udr"
+
+      - ip: "192.168.70.134"
+        hostnames:
+        - "oai-udm"        
+
+      - ip: "192.168.70.135"
+        hostnames:
+        - "oai-ausf"  
+
+      - ip: "192.168.70.136"
+        hostnames:
+        - "oai-nrf-slice12"
+
+      - ip: "192.168.70.137"
+        hostnames:
+        - "oai-nrf-slice3"        
+ 
+      - ip: "192.168.70.138"
+        hostnames:
+        - "oai-amf"
+
+      - ip: "192.168.70.139"
+        hostnames:
+        - "oai-smf-slice1"
+
+      - ip: "192.168.70.140"
+        hostnames:
+        - "oai-smf-slice2"
+
+      - ip: "192.168.70.141"
+        hostnames:
+        - "oai-smf-slice3" 
+
+      - ip: "192.168.70.142"
+        hostnames:
+        - "oai-spgwu-slice1"
+
+      - ip: "192.168.70.143"
+        hostnames:
+        - "oai-spgwu-slice2"
+
+      - ip: "192.168.70.144"
+        hostnames:
+        - "oai-vpp-upf-slice3"    
+      containers:
+      - image: oaisoftwarealliance/oai-spgwu-tiny:v1.4.0
+        imagePullPolicy: IfNotPresent
+        securityContext:
+            privileged: true
+            capabilities:
+              add: ["NET_ADMIN", "SYS_ADMIN"]
+              drop: ["ALL"]
+        name: oai-spgwu-slice1
+        env:
+          # Use secret in real usage
+        - name: TZ
+          value: Europe/Paris
+
+        - name: INSTANCE
+          value: "0"
+
+        - name: PID_DIRECTORY
+          value: /var/run
+
+        - name: SGW_INTERFACE_NAME_FOR_S1U_S12_S4_UP
+          value: net1   
+
+        - name: SGW_INTERFACE_NAME_FOR_SX
+          value: net1
+
+        - name: PGW_INTERFACE_NAME_FOR_SGI
+          value: net1
+
+        - name: NETWORK_UE_NAT_OPTION
+          value: "yes"
+
+        - name: NETWORK_UE_IP
+          value: 12.2.1.0/24
+
+        - name: BYPASS_UL_PFCP_RULES
+          value: "no"  
+
+        - name: MCC
+          value: "208"  
+
+        - name: MNC
+          value: "95"  
+
+        - name: MNC03
+          value: "095"  
+
+        - name: TAC
+          value: "40960"  
+
+        - name: GW_ID
+          value: "1"  
+
+        - name: REALM
+          value: "openairinterface.org"  
+
+        - name: ENABLE_5G_FEATURES
+          value: "yes"  
+
+        - name: REGISTER_NRF
+          value: "yes"  
+
+        - name: USE_FQDN_NRF
+          value: "yes"  
+
+        - name: UPF_FQDN_5G
+          value: "192.168.70.142"  
+
+        - name: NRF_IPV4_ADDRESS
+          value: "192.168.70.136"  
+
+        - name: NRF_PORT
+          value: "80"  
+
+        - name: NRF_API_VERSION
+          value: "v1"  
+
+        - name: NRF_FQDN
+          value: "192.168.70.136"  
+
+        - name: NSSAI_SST_0
+          value: "128"  
+
+        - name: NSSAI_SD_0
+          value: "128"  
+
+        - name: DNN_0
+          value: "default"  
+
+        # - name: SPGWC0_IP_ADDRESS
+        #   value: "192.168.70.133"
+
+        # - name: THREAD_S1U_PRIO
+        #   value: "80"  
+
+        # - name: S1U_THREADS
+        #   value: "8"
+
+        # - name: THREAD_SX_PRIO
+        #   value: "81"  
+
+        # - name: SX_THREADS
+        #   value: "1"            
+        
+        # - name: THREAD_SGI_PRIO
+        #   value: "80"  
+
+        # - name: SGI_THREADS
+        #   value: "8"   
+
+        # - name: NSSAI_SST_1
+        #   value: "1"  
+
+        # - name: NSSAI_SD_1
+        #   value: "1"  
+
+        # - name: DNN_1
+        #   value: "oai.ipv4"  
+
+        # - name: NSSAI_SST_2
+        #   value: "1"  
+
+        # - name: NSSAI_SD_2
+        #   value: "1"  
+
+        # - name: DNN_2
+        #   value: "default"  
+  
+
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: oai-spgwu-slice1-net
+spec:
+  config: '{ "cniVersion": "0.3.0", "type": "macvlan", "master": "br0", "ipam": { "type": "static", "addresses": [ { "address": "192.168.70.142/24",
+    "gateway": "192.168.70.1" } ] } }'
+    

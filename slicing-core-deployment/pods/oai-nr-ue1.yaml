@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oai-ue1
+spec:
+  selector:
+    matchLabels:
+      app: oai-ue1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: oai-ue1
+      annotations:
+        k8s.v1.cni.cncf.io/networks: oai-ue1-net
+      labels:
+        app: oai-ue1
+    spec:    
+      containers:           
+      - image: oaisoftwarealliance/oai-nr-ue:develop
+        livenessProbe:
+          exec:
+            command:
+              - /bin/bash -c "pgrep nr-uesoftmodem"
+          failureThreshold: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
+        imagePullPolicy: IfNotPresent
+        securityContext:
+            privileged: true
+        name: oai-ue1
+        env:
+          # Use secret in real usage
+        - name: DNN
+          value: oai
+        - name: FULL_IMSI
+          value: "208950000000031"
+        - name: FULL_KEY
+          value: "0C0A34601D4F07677303652C0462535B"
+        - name: NSSAI_SD
+          value: "128"
+        - name: NSSAI_SST
+          value: "128"
+        - name: OPC
+          value: "63bfa50ee6523365ff14c1f45f88737d"
+        - name: RFSIMULATOR
+          value: "192.168.70.150"
+        - name: USE_ADDITIONAL_OPTIONS
+          value: -E --sa --rfsim -r 106 --numerology 1 -C 3619200000 --nokrnmod --log_config.global_log_options level,nocolor,time
+
+
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: oai-ue1-net
+spec:
+  config: '{ "cniVersion": "0.3.0", "type": "macvlan", "master": "br0", "ipam": { "type": "static", "addresses": [ { "address": "192.168.70.160/24",
+    "gateway": "192.168.70.1" } ] } }'
+    
