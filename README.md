@@ -184,7 +184,29 @@ To check if there's connectivity between the core and the UE just enter inside t
 `root@oai-nr-ue:~# ping 12.1.1.129 `
 
 
+## Deploy Applications
 
+There're three options for applications:
+
+a) Chat Server b) SIPp Server and c) VLC server
+
+You can deploy them as pods or as VMs (for chat server for example):
+
+`root@master:~# kubectl create -f chat-server.yaml`
+
+To interact with apps you should install the client sides on the UE:
+
+For the Chat Server run the clients on the UEs:
+
+`root@oai-nr-ue:~# python3 client.py`
+
+`root@oai-ueransim:~# python3 ue/client.py`
+
+For SIPp Server - Install the SIPp and run the client on the UE:
+
+`root@oai-nr-ue:~# bash ue/install_sipp.sh`
+
+`root@oai-nr-ue:~# sudo sipp -sn uac 12.1.1.129:1234`
 
 
 
