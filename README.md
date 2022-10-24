@@ -12,6 +12,16 @@ On the Master Node:
 
 `root@master:~# bash init/deploy-storages.sh`
 
+- **Create the migration dedicated host (br0) interfaces**
+
+On the Worker Nodes:
+
+`root@worker1:~# bash init/net-conf.sh`
+
+`root@worker2:~# bash init/net-conf.sh`
+
+Before running this script, make sure that you use your VLAN IDs
+
 
 ## Install Prometheus/Grafana & K8s Metrics Server to the cluster
 
@@ -103,3 +113,80 @@ Add the following (experiment with diffrent values for optimal migration time):
 - **Deploy the VNC Viewer** (Optional)
 
 `root@master:~# kubectl create -f init/virt-vnc.yaml`
+
+
+## Importing new VM image via CDI Operator
+
+On the Master Node:
+
+`root@master:~# kubectl create -f init/vm1-image-import.yaml`
+
+This YAML file imports a Bionic Ubuntu 18.04 Image Server to all the cluster nodes, via NFS external provisioned. If you want to change the VM Image, or the disk storage for this image, please configure.
+
+If there's a need to create another VM, import a new image with different name:
+
+`root@master:~# kubectl create -f init/vm2-image-import.yaml`
+
+
+## Deploy the OAI 5G Multi-Slice Core Network
+
+For the deployment of the 5G NFs there're two options:
+
+- **Deploy everything as a Pod:**
+
+`root@master:~# bash slicing-core-deployment/pods/deploy-all.sh`
+
+This script deploys all the CNFs along with gNodeB/UERANSIM and OAI-5G-NR UE.
+
+- **Deploy some NFs as VMs:**
+
+The only way to live migrate the NFs (due to SCTP maintenance), is by nesting docker images to the KubeVirt VMs. But first, you need to configure the corresponding VMs with the corresponding interfaces and with the appropriate Data Volumes and then to create/deploy them to the cluster. We provide some templates. Please check /init/vm-nf1.yaml and /init/vm-nf2.yaml. 
+
+In our experiment we deploy the AMF as a nested container on the VM by using docker-compose:
+
+
+-  **First, Deploy all the core functions before the AMF:**
+
+`root@master:~# bash slicing-core-deployment/pods/before-amf.sh`
+
+- **Deploy the VM:**
+
+`root@master:~# kubectl create -f slicing-core-deployment/pods/vm-oai-amf.yaml`
+
+Check the status of the deployed VMI:
+
+`root@master:~# kubectl get vmi`
+
+- **Deploy the AMF inside the VM :**
+
+First, clone the repo inside the VM and install Docker-Compose by:
+
+`root@master:~# bash init/docker_install.sh`
+
+Then, deploy the AMF by:
+
+`root@master:~# docker-compose -f slicing-core-deployment/docker-compose/oai-amf-docker-compose.yaml up -d`
+
+You can always check the logs of the container by:
+
+`root@master:~# docker logs -f oai-amf`
+
+-  **Deploy the remaining NFs after the AMF:**
+
+`root@master:~# bash slicing-core-deployment/pods/after-amf.sh`
+
+After deploying the gNodeB and the UE, check if they're both successfully attached to the AMF by the logs of the VM.
+
+-  **Finally, Check the network connectivity:**
+
+To check if there's connectivity between the core and the UE just enter inside the UE pod's container and ping the IP of the corresponding UPF. For example for the oai-nr-ue which is associated with the URRLC slice:
+
+`root@oai-nr-ue:~# ping 12.1.1.129 `
+
+
+
+
+
+
+
+
