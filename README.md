@@ -129,6 +129,8 @@ Add the following (experiment with diffrent values for optimal migration time):
           disableTLS: false
 ```
 
+To check on how to trigger a live migration on a KubeVirt VM check this [guide](https://kubevirt.io/user-guide/operations/live_migration/)
+
 - **Deploy the VNC Viewer** (Optional)
 
 `root@master:~# kubectl create -f init/virt-vnc.yaml`
