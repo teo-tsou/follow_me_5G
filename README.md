@@ -1,12 +1,21 @@
-# Installation Guide:
+# Live migration for MEC services in a cloud-native 5G environment:
 
 ## Init the k8s cluster and build the PodMigration Operator
 
 Follow the instructions of this [repo](https://github.com/SSU-DCN/podmigration-operator)
 
+For easy replication use these hostnames:
+
+master: k8s-master1
+worker-node #1: station01-b205
+worker-node #2: station02-b205
+worker-node #3: station03-b205
+
 When the cluster is initialized and the podmigration operator is succesfully deployed:
 
 - **Deploy Storages (NFS Provisioner) & Network Plugins (Multus CNI):**
+
+Configure the init/deploy-storages.sh file depending on your cluster configs.
 
 On the Master Node:
 
@@ -207,6 +216,36 @@ For SIPp Server - Install the SIPp and run the client on the UE:
 `root@oai-nr-ue:~# bash ue/install_sipp.sh`
 
 `root@oai-nr-ue:~# sudo sipp -sn uac 12.1.1.129:1234`
+
+
+## Deploy RTT ServiceMonitors Apps & Load Node Stressers
+
+In order to monitor the latency between the edge nodes and the UE (oai-nr-ue), we utilize the pingaparsing python library (scenarios/rtt_export.py) and export the latency values to Prometheus via ServiceMonitor. Please check the files: scenarios/rtt-monitor-node01.yaml, scenarios/rtt-monitor-node02.yaml, scenarios/rtt-monitor-node03.yaml . You may need different configurations. To deploy them:
+
+`root@master:~# bash scenarios/deploy-rtt-monitor.sh`
+
+In order to Stress the Nodes we create some pods that have the ng-stress tool installed. These pods are deployed on the specific edge nodes. To deploy them: 
+
+`root@master:~# bash scenarios/deploy-node-stressers.sh`
+
+## RTT & Load Scenarios Experimentation
+
+In order to create realistic edge scenarios, we emulate latency by injecting high RTT values with the netem tool & we stress the nodes with the ng-stress tool. Find the script scenarios on:  scenarios/rtt-scenarios.py & scenarios/load-scenarios.py . The RTT scenario emulates a car that starts from the first node and moves all the way to the third and turns back again to the first. The load scenario adds average and heavy load on specific nodes. Feel free to experiment and play. To run the scripts, on master node: 
+
+`root@master:~# python3 scenarios/rtt-scenarios.py`
+
+`root@master:~# python3 scenarios/load-scenarios.py`
+
+`root@master:~# kubectl create -f scenarios/rtt-monitor-node03.yaml`
+
+
+## Deploy the Auto-Migration Controller
+
+For the optimal scheduling of the edge services and the CNFs we developed a migration scheduler-controller. Please check the file: auto-migration-controller.py by reading the comments and configure the global parameters to your cluster configs (Node Names, IPs, etc.). To reproduce our results run the script simultaneously with the scenario scripts on the master-node:
+
+`root@master:~# python3 auto-migration-controller.py`
+
+
 
 
 
