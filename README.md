@@ -251,7 +251,7 @@ In order to create realistic edge scenarios, we emulate latency by injecting hig
 
 ### Deploy the Auto-Migration Controller
 
-For the optimal scheduling of the edge services and the CNFs we developed a migration scheduler-controller. Please check the file: auto-migration-controller.py by reading the comments and configure the global parameters to your cluster configs (Node Names, IPs, etc.). To reproduce our results run the script simultaneously with the scenario scripts on the master-node:
+For the optimal scheduling of the edge services and the CNFs we developed a migration scheduler-controller. Please check the file: auto-migration-controller.py by reading the comments and configure the global parameters to your cluster configs (Node Names, IPs, etc.). In our case, the edge app is deployed on a pod while the AMF is deployed on a VM. To reproduce our results run the script simultaneously with the scenario scripts on the master-node:
 
 `root@master:~# python3 auto-migration-controller.py`
 
