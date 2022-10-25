@@ -1,6 +1,10 @@
 # Live migration for MEC services in a cloud-native 5G environment:
 
 
+![alt text](https://github.com/teo-tsou/follow_me_5g/blob/main/slicing-core-deployment/mig-setup.drawio%20(19).png)
+
+
+
 ## Installation Guide:
 
 
