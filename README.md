@@ -130,7 +130,7 @@ Add the following (experiment with diffrent values for optimal migration time):
 `root@master:~# kubectl create -f init/virt-vnc.yaml`
 
 
-## Importing new VM image via CDI Operator
+### Importing new VM image via CDI Operator
 
 On the Master Node:
 
@@ -143,7 +143,7 @@ If there's a need to create another VM, import a new image with different name:
 `root@master:~# kubectl create -f init/vm2-image-import.yaml`
 
 
-## Deploy the OAI 5G Multi-Slice Core Network
+### Deploy the OAI 5G Multi-Slice Core Network
 
 For the deployment of the 5G NFs there're two options:
 
