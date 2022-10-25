@@ -198,7 +198,7 @@ To interact with apps you should install the client sides on the UE:
 
 For the Chat Server run the clients on the UEs:
 
-`root@oai-nr-ue:~# python3 client.py`
+`root@oai-nr-ue:~# python3 ue/client.py`
 
 `root@oai-ueransim:~# python3 ue/client.py`
 
