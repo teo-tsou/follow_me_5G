@@ -142,7 +142,7 @@ On the Master Node:
 
 `root@master:~# kubectl create -f init/vm1-image-import.yaml`
 
-This YAML file imports a Bionic Ubuntu 18.04 Image Server to all the cluster nodes, via NFS external provisioned. If you want to change the VM Image, or the disk storage for this image, please configure.
+This YAML file imports an Ubuntu 20.04 LTS Image Server to all the cluster nodes, via NFS external provisioned. If you want to change the VM Image, or the disk storage for this image, please configure.
 
 If there's a need to create another VM, import a new image with different name:
 
