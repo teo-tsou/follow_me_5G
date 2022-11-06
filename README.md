@@ -3,8 +3,7 @@
 
 ## Architecture & Demo
 
-![alt text](https://github.com/teo-tsou/follow_me_5g/blob/main/slicing-core-deployment/mig-setup.drawio%20(19).png =250x250)
-
+<img src="https://github.com/teo-tsou/follow_me_5g/blob/main/slicing-core-deployment/mig-setup.drawio%20(19).png" width=50% height=50%>
 
 
 ## Installation Guide:
