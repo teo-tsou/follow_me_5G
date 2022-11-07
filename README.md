@@ -16,7 +16,7 @@ Follow the instructions of this [repo](https://github.com/SSU-DCN/podmigration-o
 For easy replication use these hostnames:
 
 ```
-master: k8s-master1
+master-node: k8s-master1
 worker-node #1: station01-b205
 worker-node #2: station02-b205
 worker-node #3: station03-b205
