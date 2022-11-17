@@ -4,7 +4,7 @@
 
 <img src="https://github.com/teo-tsou/follow_me_5g/blob/main/slicing-core-deployment/mig-setup.drawio%20(19).png" width=60% height=60%>
 
-## Demo
+## Demo:
 
 [![DEMO](https://img.youtube.com/vi/rDuXhm6UhJY/0.jpg)](https://youtu.be/rDuXhm6UhJY)
 
