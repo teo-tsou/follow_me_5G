@@ -1,8 +1,10 @@
 # Live migration for MEC services in a cloud-native 5G environment:
 
-## Architecture & Demo:
+## Architecture:
 
 <img src="https://github.com/teo-tsou/follow_me_5g/blob/main/slicing-core-deployment/mig-setup.drawio%20(19).png" width=60% height=60%>
+
+## Demo
 
 [![DEMO](https://img.youtube.com/vi/rDuXhm6UhJY/0.jpg)](https://youtu.be/rDuXhm6UhJY)
 
