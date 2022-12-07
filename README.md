@@ -1,4 +1,4 @@
-# Live migration for MEC services in a cloud-native 5G environment:
+# Service migration and edge selection for MEC in a cloud-native 5G environment:
 
 ## Architecture:
 
