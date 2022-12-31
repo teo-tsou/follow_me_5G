@@ -8,6 +8,8 @@
 
 [![DEMO](https://img.youtube.com/vi/rDuXhm6UhJY/0.jpg)](https://youtu.be/rDuXhm6UhJY)
 
+[Demo](https://youtu.be/rDuXhm6UhJY)
+
 
 ## Installation Guide:
 
