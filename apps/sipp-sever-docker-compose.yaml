@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+    sipp-server:
+      container_name: sipp-server
+      image: ctaloi/sipp
+      command: -sn uas -i 192.168.70.145 -p 1234
+      network_mode: "host"
+      cap_add:
+          - NET_ADMIN
+          - SYS_ADMIN
+      cap_drop:
+          - ALL
+      privileged: true
