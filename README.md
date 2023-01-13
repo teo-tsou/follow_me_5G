@@ -233,7 +233,7 @@ For SIPp Server - Install the SIPp and run the client on the UE:
 
 `root@oai-nr-ue:~# bash ue/install_sipp.sh`
 
-`root@oai-nr-ue:~# sudo sipp -sn uac 12.1.1.129:1234`
+`root@oai-nr-ue:~# sudo sipp -sn uac 192.168.70.145:1234`
 
 
 ### Deploy RTT ServiceMonitors Apps & Load Node Stressers
