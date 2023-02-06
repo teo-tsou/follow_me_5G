@@ -2,7 +2,7 @@
 
 ## System Architecture:
 
-<img src="https://github.com/teo-tsou/follow_me_5g/blob/main/slicing-core-deployment/mig-setup.drawio (22).png" width=60% height=60%>
+<img src="https://github.com/teo-tsou/follow_me_5g/blob/main/slicing-core-deployment/mig-setup.drawio (22).png" width=30% height=30%>
 
 
 ## Edge-Cloud Installation Guide:
@@ -259,8 +259,11 @@ For example you can change the RTT or Load Thresholds. You can also modify the c
 ### DQN & DSQN Agents
 
 We have implemented 2 DRL architctures for DQN and DSQN agents respectively. Both can be found at the corresponding paths in the repo:
+
+```
 ~/follow_me_5g/mec-sim-env/mec_sim/dqn.py
 ~/follow_me_5g/mec-sim-env/mec_sim/dsqn.py
+```
 
 Feel free to change the hyperparameters that have been used, such as the replay-buffer size, the learning-rate, the DNN and it's architecture, etc..
 
@@ -268,11 +271,22 @@ Feel free to change the hyperparameters that have been used, such as the replay-
 
 To monitor the learning process of the agents, we have integrated the TensorBoard. Please change the tensorboard logdir accordingly. 
 
-To train the agents run:
+To train the agents run in the conda environment:
 
+For DQN agent:
 
+`python ~/AI_follow_me_5G/mec-sim-env/mec_sim/dqn.py`
+
+or 
+
+For DSQN Agent (Deep Sarsa Agent):
+
+`python ~/AI_follow_me_5G/mec-sim-env/mec_sim/dsqn.py`
 
 At the end of the training you should see similar plots in the TensorBoard:
+
+<img src="https://github.com/teo-tsou/follow_me_5g/mec-sim-env/mec_sim/rewards-dqn.drawio.png" width=20% height=20%> <img src="https://github.com/teo-tsou/follow_me_5g//mec-sim-env/mec_sim/sarsa-agent.drawio .png" width=20% height=20%>
+
 
 
 
