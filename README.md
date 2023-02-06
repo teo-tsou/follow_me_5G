@@ -254,7 +254,7 @@ Register our custom digital-twin-driven OpenAI Gym MecEnv environment by:
 
 - **Configure the environment to your system requirments:**
 
-For example you can change the RTT or load thresholds and migration times that are defined in the init method of the MecEnv class. You can also modify the car speeds, and the mem,cpu AWGN noises that are defined on rtt_scenario and load_scenario respectively. The environment file is located on: `~/follow_me_5g/mec-sim-env/mec_sim/mec_sim/envs/mec_sim_env.py`
+For example you can change the RTT or load thresholds and migration times that are defined in the init method of the MecEnv class. You can also modify the car speeds, and the mem,cpu AWGN noises that are defined on rtt_scenario and load_scenario respectively. You can even play with the reward function and implement new policies. The environment file is located on: `~/follow_me_5g/mec-sim-env/mec_sim/mec_sim/envs/mec_sim_env.py`
 
 ### DQN & DSQN Agents
 
@@ -309,11 +309,6 @@ Then we can just load each agent's weights, in order to utilize the agent's acti
 ### Evaluate in real-testbed
 
 - **Replace the digital-twin environment with the real-one:**
-
-
-
-
-
 
 
 
