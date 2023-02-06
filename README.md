@@ -228,3 +228,29 @@ For SIPp Server - Install the SIPp and run the client on the UE:
 `root@oai-nr-ue:~# bash ue/install_sipp.sh`
 
 `root@oai-nr-ue:~# sudo sipp -sn uac 192.168.70.145:1234`
+
+
+### Deep Reinforcment Learning Instructions
+
+## OpenAI Custom MDP Environment
+
+- **Install the dependecies - Conda Environment :**
+
+- **Install the custom MecEnv environment :**
+
+## DQN & DSQN Agents
+
+- **Install the dependecies - Conda Environment :**
+- **Train the agents - Monitor with TensorBoard :**
+
+## Evaluate in real-testbed
+
+- **Replace the digital-twin environment with the real-one:**
+
+
+
+
+
+
+
+
