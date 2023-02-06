@@ -277,7 +277,10 @@ For DQN agent:
 
 `python ~/AI_follow_me_5G/mec-sim-env/mec_sim/dqn.py`
 
-or 
+At the end of the training you should see similar plots in the TensorBoard:
+<img src="https://github.com/teo-tsou/AI_follow_me_5G/blob/main/mec-sim-env/mec_sim/rewards-dqn.drawio.png" width=20% height=20%>
+
+**or** 
 
 For DSQN Agent (Deep Sarsa Agent):
 
@@ -285,7 +288,6 @@ For DSQN Agent (Deep Sarsa Agent):
 
 At the end of the training you should see similar plots in the TensorBoard:
 
-<img src="https://github.com/teo-tsou/AI_follow_me_5G/blob/main/mec-sim-env/mec_sim/rewards-dqn.drawio.png" width=20% height=20%>
 <img src="https://github.com/teo-tsou/AI_follow_me_5G/blob/main/mec-sim-env/mec_sim/sarsa-agent.drawio .png" width=20% height=20%>
 
 
