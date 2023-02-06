@@ -269,7 +269,7 @@ Feel free to change the hyperparameters that have been used, such as the replay-
 
 - **Train the agents - Monitor with TensorBoard :**
 
-To monitor the learning process of the agents, we have integrated the TensorBoard. Please change the tensorboard logdir accordingly. 
+To monitor the learning process of the agents, we have integrated the TensorBoard. Please change the tensorboard logdirs accordingly. 
 
 To train the agents run in the conda environment:
 
@@ -279,7 +279,9 @@ For DQN agent:
 
 To start the TensorBoard to monitor the learning, run:
 
-tensorboard --log_dir=dqn --bind_all
+`tensorboard --log_dir=dqn --bind_all`
+
+and then visit the Web-GUI at: localhost:6006
 
 At the end of the training you should see a similar plot in the TensorBoard:
 
@@ -293,7 +295,9 @@ For DSQN Agent (Deep Sarsa Agent):
 
 To start the TensorBoard to monitor the learning, run:
 
-tensorboard --log_dir=dsqn --bind_all
+`tensorboard --log_dir=dsqn --bind_all`
+
+and then visit the Web-GUI at: localhost:6006
 
 At the end of the training you should see a similar plot in the TensorBoard:
 
