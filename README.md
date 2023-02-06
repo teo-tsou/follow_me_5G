@@ -278,6 +278,7 @@ For DQN agent:
 `python ~/AI_follow_me_5G/mec-sim-env/mec_sim/dqn.py`
 
 At the end of the training you should see similar plots in the TensorBoard:
+
 <img src="https://github.com/teo-tsou/AI_follow_me_5G/blob/main/mec-sim-env/mec_sim/rewards-dqn.drawio.png" width=20% height=20%>
 
 **or** 
