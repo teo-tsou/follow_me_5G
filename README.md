@@ -2,7 +2,7 @@
 
 ## System Architecture:
 
-<img src="https://github.com/teo-tsou/follow_me_5g/blob/main/slicing-core-deployment/mig-setup.drawio (22).png" width=50% height=50%>
+<img src="https://github.com/teo-tsou/follow_me_5g/blob/main/slicing-core-deployment/mig-setup.drawio (22).png" width=40% height=30%>
 
 
 ## Edge-Cloud Installation Guide:
