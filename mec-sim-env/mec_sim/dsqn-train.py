@@ -8,7 +8,7 @@ from rl.policy import LinearAnnealedPolicy, EpsGreedyQPolicy
 from tensorflow.keras.callbacks import TensorBoard
 
 tensorboard = TensorBoard(
-    log_dir="/home/ubuntu/follow_me_5g/mec-sim-env/mec_sim/sarsa",
+    log_dir="/home/ubuntu/follow_me_5g/mec-sim-env/mec_sim/dsqn",
     histogram_freq=0,
     write_graph=False,
     write_images=False,
@@ -45,4 +45,4 @@ def build_agent(model, actions):
 sarsa = build_agent(model, actions)
 sarsa.compile(Adam(lr=1e-3), metrics=['mae'])
 sarsa.fit(env, nb_steps=200000, visualize=False, verbose=2, callbacks = [tensorboard])
-sarsa.save_weights("/home/ubuntu/follow_me_5g/mec-sim-env/mec_sim/sarsa.h5f", overwrite=True)
+sarsa.save_weights("/home/ubuntu/follow_me_5g/mec-sim-env/mec_sim/dsqn-wights.h5f", overwrite=True)
