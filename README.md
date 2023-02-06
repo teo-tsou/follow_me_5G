@@ -254,11 +254,11 @@ Register our custom digital-twin-driven OpenAI Gym MecEnv environment by:
 
 - **Configure the environment to your system requirments:**
 
-For example you can change the RTT or Load Thresholds. You can also modify the car speeds, and the mem,cpu AWGN noises and migration times the environment file is located on: ~/follow_me_5g/mec-sim-env/mec_sim/mec_sim/envs/mec_sim_env.py
+For example you can change the RTT or load thresholds and migration times that are defined in the init method of the MecEnv class. You can also modify the car speeds, and the mem,cpu AWGN noises that are defined on rtt_scenario and load_scenario respectively. The environment file is located on: `~/follow_me_5g/mec-sim-env/mec_sim/mec_sim/envs/mec_sim_env.py`
 
 ### DQN & DSQN Agents
 
-We have implemented 2 DRL architctures for DQN and DSQN agents respectively. Both can be found at the corresponding paths in the repo:
+We have implemented 2 DRL architctures for DQN and DSQN agents respectively. Please read the [keras-rl2 documentation](https://keras-rl.readthedocs.io/en/latest/agents/overview/) before you proceed in order to underastand the hyperparameters. Both agent implementations can be found at the corresponding paths in the repo:
 
 ```
 ~/follow_me_5g/mec-sim-env/mec_sim/dqn.py
