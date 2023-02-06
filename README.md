@@ -230,7 +230,7 @@ For SIPp Server - Install the SIPp and run the client on the UE:
 `root@oai-nr-ue:~# sudo sipp -sn uac 192.168.70.145:1234`
 
 
-## Deep Reinforcment Learning Instructions
+## Deep Reinforcement Learning Instructions
 
 ### OpenAI Custom MDP Environment
 
