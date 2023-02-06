@@ -275,9 +275,13 @@ To train the agents run in the conda environment:
 
 For DQN agent:
 
-`python ~/AI_follow_me_5G/mec-sim-env/mec_sim/dqn.py`
+`python ~/AI_follow_me_5G/mec-sim-env/mec_sim/dqn-train.py`
 
-At the end of the training you should see similar plots in the TensorBoard:
+To start the TensorBoard to monitor the learning, run:
+
+tensorboard --log_dir=dqn --bind_all
+
+At the end of the training you should see a similar plot in the TensorBoard:
 
 <img src="https://github.com/teo-tsou/AI_follow_me_5G/blob/main/mec-sim-env/mec_sim/rewards-dqn.drawio.png" width=20% height=20%>
 
@@ -285,13 +289,15 @@ At the end of the training you should see similar plots in the TensorBoard:
 
 For DSQN Agent (Deep Sarsa Agent):
 
-`python ~/AI_follow_me_5G/mec-sim-env/mec_sim/dsqn.py`
+`python ~/AI_follow_me_5G/mec-sim-env/mec_sim/dsqn-train.py`
 
-At the end of the training you should see similar plots in the TensorBoard:
+To start the TensorBoard to monitor the learning, run:
+
+tensorboard --log_dir=dsqn --bind_all
+
+At the end of the training you should see a similar plot in the TensorBoard:
 
 <img src="https://github.com/teo-tsou/AI_follow_me_5G/blob/main/mec-sim-env/mec_sim/sarsa-agent.drawio .png" width=20% height=20%>
-
-
 
 
 ### Evaluate in real-testbed
