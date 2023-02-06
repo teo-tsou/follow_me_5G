@@ -1,11 +1,11 @@
 # Service migration and edge selection for MEC in a cloud-native 5G environment:
 
-## Architecture:
+## System Architecture:
 
 <img src="https://github.com/teo-tsou/follow_me_5g/blob/main/slicing-core-deployment/mig-setup.drawio (22).png" width=60% height=60%>
 
 
-## Installation Guide:
+## Edge-Cloud Installation Guide:
 
 
 ### Init the k8s cluster and build the PodMigration Operator
@@ -230,20 +230,20 @@ For SIPp Server - Install the SIPp and run the client on the UE:
 `root@oai-nr-ue:~# sudo sipp -sn uac 192.168.70.145:1234`
 
 
-### Deep Reinforcment Learning Instructions
+## Deep Reinforcment Learning Instructions
 
-## OpenAI Custom MDP Environment
+### OpenAI Custom MDP Environment
 
 - **Install the dependecies - Conda Environment :**
 
 - **Install the custom MecEnv environment :**
 
-## DQN & DSQN Agents
+### DQN & DSQN Agents
 
 - **Install the dependecies - Conda Environment :**
 - **Train the agents - Monitor with TensorBoard :**
 
-## Evaluate in real-testbed
+### Evaluate in real-testbed
 
 - **Replace the digital-twin environment with the real-one:**
 
