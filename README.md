@@ -304,6 +304,7 @@ At the end of the training you should see a similar plot in the TensorBoard:
 <img src="https://github.com/teo-tsou/AI_follow_me_5G/blob/main/mec-sim-env/mec_sim/sarsa-agent.drawio .png" width=25% height=25%>
 
 At the end of the training for each case (DQN-DSQN) we save the agent's weights: dqn_weights.h5f and dsqn_weights.h5f
+
 Then we can just load each agent's weights, in order to utilize the agent's actions in our real-infrastructure or in a evaluation-simulation infrastructure.
 
 ### Evaluate in real-testbed
