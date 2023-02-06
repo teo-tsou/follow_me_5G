@@ -236,12 +236,45 @@ For SIPp Server - Install the SIPp and run the client on the UE:
 
 - **Install the dependecies - Conda Environment :**
 
-- **Install the custom MecEnv environment :**
+Install conda on your machine from [here](https://docs.anaconda.com/anaconda/install/linux/)
+
+Create the pre-configured keras-rl2 conda environment by:
+
+`conda env create -f /init/environment.yml`
+
+and activate the environment by:
+
+`conda activate keras-rl2`
+
+- **Register the custom MecEnv environment :**
+
+Register our custom digital-twin-driven OpenAI Gym MecEnv environment by:
+
+`(keras-rl2) root@master:~/follow_me_5g/mec-sim-env# pip install -e mec_sim`
+
+- **Configure the environment to your system requirments:**
+
+For example you can change the RTT or Load Thresholds. You can also modify the car speeds, and the mem,cpu AWGN noises and migration times the environment file is located on: ~/follow_me_5g/mec-sim-env/mec_sim/mec_sim/envs/mec_sim_env.py
 
 ### DQN & DSQN Agents
 
-- **Install the dependecies - Conda Environment :**
+We have implemented 2 DRL architctures for DQN and DSQN agents respectively. Both can be found at the corresponding paths in the repo:
+~/follow_me_5g/mec-sim-env/mec_sim/dqn.py
+~/follow_me_5g/mec-sim-env/mec_sim/dsqn.py
+
+Feel free to change the hyperparameters that have been used, such as the replay-buffer size, the learning-rate, the DNN and it's architecture, etc..
+
 - **Train the agents - Monitor with TensorBoard :**
+
+To monitor the learning process of the agents, we have integrated the TensorBoard. Please change the tensorboard logdir accordingly. 
+
+To train the agents run:
+
+
+
+At the end of the training you should see similar plots in the TensorBoard:
+
+
 
 ### Evaluate in real-testbed
 
