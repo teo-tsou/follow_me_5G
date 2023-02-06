@@ -9,7 +9,7 @@ from rl.memory import SequentialMemory
 from tensorflow.keras.callbacks import TensorBoard
 
 tensorboard = TensorBoard(
-    log_dir="/home/ubuntu/follow_me_5g/mec-sim-env/mec_sim/logs200k",
+    log_dir="/home/ubuntu/follow_me_5g/mec-sim-env/mec_sim/dqn",
     histogram_freq=0,
     write_graph=False,
     write_images=False,
@@ -49,7 +49,7 @@ def build_agent(model, actions):
 dqn = build_agent(model, actions)
 dqn.compile(Adam(lr=1e-3), metrics=['mae'])
 dqn.fit(env, nb_steps=200000, visualize=False, verbose=2, callbacks = [tensorboard])
-dqn.save_weights("/home/ubuntu/follow_me_5g/mec-sim-env/mec_sim/dqn_weights_200k.h5f", overwrite=True)
+dqn.save_weights("/home/ubuntu/follow_me_5g/mec-sim-env/mec_sim/dqn_weights.h5f", overwrite=True)
 
 #scores = dqn.test(env, nb_episodes=100, visualize=False)
 #print(np.mean(scores.history['episode_reward']))
