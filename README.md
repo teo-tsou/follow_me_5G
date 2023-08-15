@@ -1,5 +1,19 @@
 # Service migration and edge selection for MEC in a cloud-native 5G environment:
 
+If you find this project useful in your research, please consider citing:
+
+ ```
+@INPROCEEDINGS{10175417,
+  author={Tsourdinis, Theodoros and Makris, Nikos and Fdida, Serge and Korakis, Thanasis},
+  booktitle={2023 IEEE 9th International Conference on Network Softwarization (NetSoft)}, 
+  title={DRL-based Service Migration for MEC Cloud-Native 5G and beyond Networks}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={62-70},
+  doi={10.1109/NetSoft57336.2023.10175417}}
+```
+
 ## System Architecture:
 
 <img src="https://github.com/teo-tsou/follow_me_5g/blob/main/slicing-core-deployment/mig-setup.drawio (22).png" width=40% height=30%>
